@@ -1,4 +1,4 @@
-import { Geist, Geist_Mono } from "next/font/google";
+import { Montserrat, Oxanium } from "next/font/google";
 import { cookies } from "next/headers";
 
 import { AppSidebar } from "@/components/sidebar/app-sidebar";
@@ -16,14 +16,16 @@ const META_THEME_COLORS = {
   dark: "#09090b",
 };
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const oxanium = Oxanium({
+  weight: ["500", "600"],
   subsets: ["latin"],
+  variable: "--font-oxanium",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const montserrat = Montserrat({
+  weight: ["400", "700"],
   subsets: ["latin"],
+  variable: "--font-montserrat",
 });
 
 export const metadata: Metadata = {
@@ -42,7 +44,11 @@ export default async function RootLayout({
   const isScaled = activeThemeValue?.endsWith("-scaled");
 
   return (
-    <html lang="pt-BR" suppressHydrationWarning>
+    <html
+      lang="pt-BR"
+      className={`${oxanium.variable} ${montserrat.variable}`}
+      suppressHydrationWarning
+    >
       <body
         className={cn(
           "bg-background overscroll-none font-sans antialiased",
