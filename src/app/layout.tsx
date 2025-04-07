@@ -6,6 +6,7 @@ import { SiteHeader } from "@/components/sidebar/site-header";
 import { ActiveThemeProvider } from "@/components/theme/theme-active";
 import { ThemeProvider } from "@/components/theme/theme-provider";
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
+
 import { cn } from "@/lib/utils";
 import type { Metadata } from "next";
 import "./globals.css";
