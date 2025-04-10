@@ -1,11 +1,11 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
+import { IconMail, IconUser } from "@tabler/icons-react";
 import { ArrowRight } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
-import { IconMail, IconUser } from "@tabler/icons-react";
 import { Button } from "./ui/button";
 import { Card, CardContent, CardHeader } from "./ui/card";
 import { Input } from "./ui/input";
@@ -35,9 +35,9 @@ export function SubscriptionForm() {
       onSubmit={handleSubmit(onSubscribe)}
       className="w-full rounded-2xl space-y-6 md:max-w-[440px]"
     >
-      <Card>
+      <Card className="border-zinc-700 dark:border-zinc-800">
         <CardHeader>
-          <h2 className="font-heading font-semibold text-gray-200 text-xl">
+          <h2 className="font-heading font-semibold text-gray-800 dark:text-gray-200 text-xl">
             Inscrição
           </h2>
         </CardHeader>
@@ -45,8 +45,8 @@ export function SubscriptionForm() {
         <CardContent>
           <div className="space-y-3">
             <div className="space-y-2">
-              <div className="group flex flex-row items-center gap-2 border rounded-lg focus-within:border-gray-100">
-                <span className="text-gray-400 group-focus-within:text-gray-100">
+              <div className="group flex flex-row items-center gap-2 border border-zinc-800 rounded-lg focus-within:border-gray-950 dark:focus-within:border-gray-100">
+                <span className="text-gray-400 group-focus-within:text-gray-800 dark:group-focus-within:text-gray-100">
                   <IconUser />
                 </span>
                 <Input
@@ -58,15 +58,15 @@ export function SubscriptionForm() {
               </div>
 
               {errors?.name && (
-                <p className="text-danger font-semibold text-xs">
+                <p className="text-red-900 font-semibold text-xs">
                   {errors.name.message}
                 </p>
               )}
             </div>
 
             <div className="space-y-2">
-              <div className="group flex flex-row items-center gap-2 border rounded-lg focus-within:border-gray-100">
-                <span className="text-gray-400 ml-0.5 group-focus-within:text-gray-100">
+              <div className="group flex flex-row items-center gap-2 border border-zinc-800 rounded-lg focus-within:border-gray-950 dark:focus-within:border-gray-100">
+                <span className="text-gray-400 ml-0.5 group-focus-within:text-gray-800 dark:group-focus-within:text-gray-100">
                   <IconMail />
                 </span>
                 <Input
@@ -78,7 +78,7 @@ export function SubscriptionForm() {
               </div>
 
               {errors?.email && (
-                <p className="text-danger font-semibold text-xs">
+                <p className="text-red-900 font-semibold text-xs">
                   {errors.email.message}
                 </p>
               )}
