@@ -1,9 +1,9 @@
 import { Radio } from "lucide-react";
+import Image from "next/image";
 
 import devStage from "@/assets/logo.svg";
 import { SubscriptionForm } from "@/components/subscription-form";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import Image from "next/image";
 
 export default function Home() {
   return (

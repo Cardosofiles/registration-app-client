@@ -3,12 +3,15 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { IconMail, IconUser } from "@tabler/icons-react";
 import { ArrowRight } from "lucide-react";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
 import { Button } from "./ui/button";
 import { Card, CardContent, CardHeader } from "./ui/card";
 import { Input } from "./ui/input";
+
+import { postSubscriptions } from "@/api/http";
 
 const subscriptionSchema = z.object({
   name: z.string().min(2, "Digite seu nome completo"),
@@ -18,6 +21,9 @@ const subscriptionSchema = z.object({
 type SubscriptionSchema = z.infer<typeof subscriptionSchema>;
 
 export function SubscriptionForm() {
+  const router = useRouter();
+  const searchParams = useSearchParams();
+
   const {
     register,
     handleSubmit,
@@ -26,8 +32,12 @@ export function SubscriptionForm() {
     resolver: zodResolver(subscriptionSchema),
   });
 
-  function onSubscribe(data: SubscriptionSchema) {
-    console.log(data);
+  async function onSubscribe({ name, email }: SubscriptionSchema) {
+    const referrer = searchParams.get("referrer");
+
+    const { subscriberId } = await postSubscriptions({ name, email, referrer });
+
+    return router.push(`/invite/${subscriberId}`);
   }
 
   return (
@@ -58,7 +68,7 @@ export function SubscriptionForm() {
               </div>
 
               {errors?.name && (
-                <p className="text-red-900 font-semibold text-xs">
+                <p className="text-red-600 font-semibold text-xs">
                   {errors.name.message}
                 </p>
               )}
@@ -78,14 +88,17 @@ export function SubscriptionForm() {
               </div>
 
               {errors?.email && (
-                <p className="text-red-900 font-semibold text-xs">
+                <p className="text-red-600 font-semibold text-xs">
                   {errors.email.message}
                 </p>
               )}
             </div>
           </div>
 
-          <Button className="mt-2.5 w-full flex justify-between" type="submit">
+          <Button
+            className="mt-2.5 w-full flex justify-between cursor-pointer"
+            type="submit"
+          >
             Confirmar
             <ArrowRight className="size-6" />
           </Button>

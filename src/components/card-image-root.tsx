@@ -1,10 +1,11 @@
-import Image from "next/image";
+import Image, { type StaticImageData } from "next/image";
+import type { ReactNode } from "react";
 import { Card, CardContent, CardFooter } from "./ui/card";
 
 interface CardRootLayot {
   content?: string;
-  paragraphy?: string;
-  imageSrc?: string;
+  paragraphy?: ReactNode;
+  imageSrc?: string | StaticImageData;
   imageAlt?: string;
   imageWidth?: number;
   imageHeight?: number;

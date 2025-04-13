@@ -1,8 +1,9 @@
+import type { ReactNode } from "react";
 import { Card, CardContent, CardFooter, CardHeader } from "./ui/card";
 
 interface CardRootLayot {
   icon?: React.ReactNode;
-  content?: string;
+  content?: ReactNode;
   link?: string;
 }
 
