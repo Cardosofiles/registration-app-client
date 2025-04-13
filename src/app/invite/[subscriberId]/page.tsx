@@ -140,7 +140,9 @@ export default async function Invite(props: InvitePageProps) {
             };
 
             const formatScoreText = (score: number) =>
-              `${score} ${score === 1 ? "indicado" : "indicados"}`;
+              `${score} ${
+                score === 1 ? "usuário indicado" : "usuários indicados"
+              }`;
 
             return (
               <CardImageRoot
